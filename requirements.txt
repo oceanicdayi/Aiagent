@@ -1,0 +1,12 @@
+# OpenCLAW package from GitHub
+# Note: Replace with the correct URL if the repository exists
+# https://github.com/TigerResearch/OpenCLAW/archive/refs/heads/master.tar.gz
+#
+# Alternative format for installing from GitHub tarball:
+# git+https://github.com/TigerResearch/OpenCLAW.git@master
+#
+# If the repository is private or requires authentication, use:
+# git+https://${GITHUB_TOKEN}@github.com/TigerResearch/OpenCLAW.git@master
+
+# Common dependencies for Hugging Face Spaces
+gradio>=3.50.0

@@ -1,5 +1,106 @@
 # Aiagent
 
+## 如何在 Hugging Face Spaces 安裝 OpenCLAW
+
+本項目展示了如何在 Hugging Face Spaces 中安裝和使用 OpenCLAW 套件（或任何來自 GitHub 的套件）。
+
+### 安裝方法
+
+在 Hugging Face Spaces 中安裝 OpenCLAW，有以下幾種方法可以在 `requirements.txt` 文件中添加：
+
+#### 方法 1: 使用 tarball URL
+```
+https://github.com/TigerResearch/OpenCLAW/archive/refs/heads/master.tar.gz
+```
+
+#### 方法 2: 使用 git+ 協議（推薦）
+```
+git+https://github.com/TigerResearch/OpenCLAW.git@master
+```
+
+#### 方法 3: 針對特定分支或標籤
+```
+git+https://github.com/TigerResearch/OpenCLAW.git@v1.0.0
+git+https://github.com/TigerResearch/OpenCLAW.git@main
+```
+
+#### 方法 4: 私有倉庫（需要 token）
+```
+git+https://${GITHUB_TOKEN}@github.com/TigerResearch/OpenCLAW.git@master
+```
+
+### 部署到 Hugging Face Spaces
+
+1. **創建新的 Space**
+   - 訪問 [Hugging Face Spaces](https://huggingface.co/spaces)
+   - 點擊 "Create new Space"
+   - 選擇 Gradio SDK
+   - 填寫 Space 名稱和設置
+
+2. **上傳項目文件**
+   - `app.py` - Gradio 應用程序
+   - `requirements.txt` - 包含 OpenCLAW 和其他依賴項
+   - `README.md` - 項目說明文件
+
+3. **自動安裝**
+   - Hugging Face Spaces 會自動檢測 `requirements.txt`
+   - 所有依賴項會在構建時自動安裝
+   - 應用程序將自動啟動
+
+### 文件說明
+
+- **requirements.txt**: 列出所有 Python 依賴項，包括從 GitHub 安裝的套件
+- **app.py**: Gradio 應用程序示例，展示如何使用已安裝的套件
+
+### 工作原理
+
+Hugging Face Spaces 使用 pip 來安裝 `requirements.txt` 中列出的依賴項。pip 支持多種安裝來源：
+
+1. **PyPI**: 標準套件名稱（如 `gradio>=3.50.0`）
+2. **GitHub tarball**: 直接 URL（如 `https://github.com/user/repo/archive/branch.tar.gz`）
+3. **Git repository**: 使用 `git+` 協議（如 `git+https://github.com/user/repo.git`）
+
+### 故障排除
+
+#### 問題：安裝失敗
+- **檢查倉庫 URL**: 確保 GitHub 倉庫存在且可訪問
+- **檢查分支名稱**: 使用 `main` 而不是 `master`（取決於倉庫）
+- **檢查私有倉庫**: 私有倉庫需要認證 token
+
+#### 問題：找不到模塊
+- **確認套件名稱**: 安裝後的模塊名稱可能與倉庫名稱不同
+- **檢查 setup.py**: 查看倉庫的 `setup.py` 文件確認模塊名稱
+
+#### 問題：依賴衝突
+- **指定版本**: 在 requirements.txt 中指定相容的版本
+- **使用虛擬環境**: 本地測試時使用虛擬環境
+
+### 測試安裝
+
+在本地測試 requirements.txt：
+
+```bash
+# 創建虛擬環境
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# 或 venv\Scripts\activate  # Windows
+
+# 安裝依賴
+pip install -r requirements.txt
+
+# 運行應用
+python app.py
+```
+
+### 注意事項
+
+⚠️ **重要提示**: 
+- 目前 `TigerResearch/OpenCLAW` 倉庫可能不存在或無法訪問
+- 請使用實際存在的倉庫 URL 替換示例中的 URL
+- 確認套件有正確的 `setup.py` 或 `pyproject.toml` 文件以支持 pip 安裝
+
+---
+
 ## 新聞分析：xAI 全體員工大會
 
 ### 摘要
